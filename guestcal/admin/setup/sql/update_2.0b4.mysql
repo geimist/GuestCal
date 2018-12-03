@@ -1,0 +1,3 @@
+UPDATE `prefs` SET `value`="2.0rc1" WHERE `name`="dbVersion";
+INSERT INTO `prefs` VALUES('showTitleInFrontend', '1');
+INSERT INTO `prefs` VALUES('classFirstAndLastDay', '0');

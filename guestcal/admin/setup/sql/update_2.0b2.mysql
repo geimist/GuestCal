@@ -1,0 +1,1 @@
+UPDATE `prefs` SET `value`="2.0b3" WHERE `name`="dbVersion";

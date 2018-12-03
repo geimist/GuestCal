@@ -1,0 +1,2 @@
+UPDATE `prefs` SET `value`="2.1" WHERE `name`="dbVersion";
+ALTER TABLE `objects_per_language` ADD `desc` TEXT NOT NULL;

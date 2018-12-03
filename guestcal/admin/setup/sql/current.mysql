@@ -1,0 +1,117 @@
+CREATE TABLE IF NOT EXISTS `classes` (
+  `id` int(11) NOT NULL auto_increment,
+  `color` varchar(6) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+INSERT INTO `classes` VALUES(1, '39af2f');
+INSERT INTO `classes` VALUES(2, 'efb300');
+INSERT INTO `classes` VALUES(3, 'd9371b');
+INSERT INTO `classes` VALUES(4, '');
+INSERT INTO `classes` VALUES(5, '');
+
+CREATE TABLE IF NOT EXISTS `classes_per_language` (
+  `class_id` int(11) NOT NULL,
+  `language_id` int(11) NOT NULL,
+  `name` varchar(30) NOT NULL,
+  `content` varchar(2) NOT NULL,
+  PRIMARY KEY  (`class_id`,`language_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+INSERT INTO `classes_per_language` VALUES(2, 1, 'reserviert', '');
+INSERT INTO `classes_per_language` VALUES(3, 2, 'occupied', '');
+INSERT INTO `classes_per_language` VALUES(4, 1, 'Samstage', 'Sa');
+INSERT INTO `classes_per_language` VALUES(4, 2, 'Saturdays', 'Sa');
+INSERT INTO `classes_per_language` VALUES(5, 1, 'Sonntage', 'So');
+INSERT INTO `classes_per_language` VALUES(5, 2, 'Sundays', 'Su');
+INSERT INTO `classes_per_language` VALUES(1, 2, 'available', '');
+INSERT INTO `classes_per_language` VALUES(1, 1, 'frei', '');
+INSERT INTO `classes_per_language` VALUES(3, 1, 'belegt', '');
+INSERT INTO `classes_per_language` VALUES(2, 2, 'reserved', '');
+
+CREATE TABLE IF NOT EXISTS `entries` (
+  `id` int(11) NOT NULL auto_increment,
+  `object_id` int(11) NOT NULL default '0',
+  `class_id` int(11) NOT NULL,
+  `kind` varchar(10) NOT NULL,
+  PRIMARY KEY  (`id`),
+  KEY `object_id` (`object_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+INSERT INTO `entries` VALUES(1, 0, 4, 'returning');
+INSERT INTO `entries` VALUES(2, 0, 5, 'returning');
+
+CREATE TABLE IF NOT EXISTS `entries_per_language` (
+  `entry_id` int(11) NOT NULL,
+  `language_id` int(11) NOT NULL,
+  `desc` varchar(100) NOT NULL,
+  PRIMARY KEY  (`entry_id`,`language_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+INSERT INTO `entries_per_language` VALUES(1, 1, 'Samstag');
+INSERT INTO `entries_per_language` VALUES(1, 2, 'Saturday');
+INSERT INTO `entries_per_language` VALUES(2, 1, 'Sonntag');
+INSERT INTO `entries_per_language` VALUES(2, 2, 'Sunday');
+
+CREATE TABLE IF NOT EXISTS `entries_static` (
+  `entry_id` int(11) NOT NULL,
+  `from` date NOT NULL,
+  `to` date NOT NULL,
+  PRIMARY KEY  (`entry_id`),
+  KEY `from` (`from`,`to`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+CREATE TABLE IF NOT EXISTS `entry_returning` (
+  `entry_id` int(11) NOT NULL,
+  `wday` int(1) NOT NULL default '0',
+  `day` int(2) NOT NULL default '0',
+  `month` int(2) NOT NULL default '0',
+  KEY `entry_id` (`entry_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+INSERT INTO `entry_returning` VALUES(1, 6, 0, 0);
+INSERT INTO `entry_returning` VALUES(2, 7, 0, 0);
+
+CREATE TABLE IF NOT EXISTS `languages` (
+  `id` int(11) NOT NULL auto_increment,
+  `name` varchar(30) NOT NULL,
+  `abbr` varchar(3) NOT NULL,
+  `active` int(1) NOT NULL default '1',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+INSERT INTO `languages` VALUES(1, 'Deutsch', 'de', 1);
+INSERT INTO `languages` VALUES(2, 'English', 'en', 1);
+
+CREATE TABLE IF NOT EXISTS `objects` (
+  `id` int(11) NOT NULL auto_increment,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+INSERT INTO `objects` VALUES(1);
+
+CREATE TABLE IF NOT EXISTS `objects_per_language` (
+  `object_id` int(11) NOT NULL,
+  `language_id` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `desc` text NOT NULL,
+  PRIMARY KEY  (`object_id`,`language_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+INSERT INTO `objects_per_language` VALUES(1, 1, 'GuestCal', '');
+INSERT INTO `objects_per_language` VALUES(1, 2, 'GuestCal', '');
+
+CREATE TABLE IF NOT EXISTS `prefs` (
+  `name` varchar(30) NOT NULL,
+  `value` text NOT NULL,
+  PRIMARY KEY  (`name`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+INSERT INTO `prefs` VALUES('dbVersion', '2.1.4');
+INSERT INTO `prefs` VALUES('languageDefault', '1');
+INSERT INTO `prefs` VALUES('classDefault', '1');
+INSERT INTO `prefs` VALUES('classFirstAndLastDay', '0');
+INSERT INTO `prefs` VALUES('hideExpiredDates', '1');
+INSERT INTO `prefs` VALUES('objectDefault', '1');
+INSERT INTO `prefs` VALUES('objectShowSelect', '1');
+INSERT INTO `prefs` VALUES('showTitleInFrontend', '1');
