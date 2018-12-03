@@ -1,0 +1,76 @@
+/**
+ * This file is part of GuestCal: http://guestcal.sourceforge.net/
+ *
+ * ©2012 dotplex e.K. / www.dotplex.de / info@dotplex.de
+ * Licenced under GPLv3 Open Source Licence: http://www.gnu.org/licenses/gpl-3.0.html
+ */
+ 
+body {
+	margin: 15px;
+}
+
+h1 {
+	font: bold 24px Helvetica, "Helvetica Neue", Verdana, Arial, sans-serif;
+	margin: 0 0 12px;
+}
+
+h2 {
+	font: bold 18px Helvetica, "Helvetica Neue", Verdana, Arial, sans-serif;
+	margin: 0 0 9px;
+}
+
+h3 {
+	font: 18px Helvetica, "Helvetica Neue", Verdana, Arial, sans-serif;
+	margin: 18px 0 9px;
+}
+
+p, td, th, li, div {
+	font: normal 12px Helvetica, "Helvetica Neue", Verdana, Arial, sans-serif;
+}
+
+p.menu {
+	
+}
+
+ul.error {
+	color: #d9371b;
+}
+
+th {
+	font-weight: bold;
+	text-align: left;
+}
+
+tr {
+	vertical-align: top;
+}
+
+a {
+	text-decoration: none;
+	color: #3945d6;
+}
+
+table.calendar {
+	empty-cells: show;
+	border-collapse: collapse;
+}
+
+table.calendar tr {
+	vertical-align: bottom;
+}
+
+table.calendar td {
+	width: 14px;
+	height: 14px;
+	padding: 1px;
+	border: 2px solid #f3f3f3;
+	font-size: 11px;
+}
+
+table.calendar th {
+	border: 1px solid #ffffff;
+}
+
+#languages {
+	float: right;
+}
