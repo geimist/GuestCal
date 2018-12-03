@@ -1,0 +1,24 @@
+GuestCal 2: Installationsanleitung
+
+### Voraussetzungen ###
+
+- Webserver mit PHP >= 5.0.0
+- MySQL-Datenbank >= 4.1
+
+
+### Installation ###
+
+1. Entpacken Sie das Archiv und laden alle Dateien in ein beliebiges Verzeichnis auf Ihrem Webserver.
+
+2. Konfigurieren Sie den Datenbankserver in "includes/config.inc.php".
+
+3. Öffnen Sie die Adresse "http://path.to.your.installation/admin/setup.php" in einem Webbrowser. Die Installation startet automatisch.
+
+
+### Upgrade ###
+
+Alle Versionen >= 1.3.1 können aktualisiert werden.
+
+Wenn Sie Templates oder Sprachdateien geändert haben, sichern Sie diese vor dem Update. Prüfen Sie Ihre Sprachdateien, ob in der neuen Version Variablen hinzugekommen sind.
+
+Installieren Sie die neue Version wie oben beschrieben. Wenn Sie dieselbe Datenbank und dasselbe Tabellenpräfix eintragen, erkennt das Installationsprogramm automatisch die alte Version. Unter dem Menüpunkt Import können Sie anschließend auch noch weitere Installationen von GuestCal 1.3.1 importieren.
