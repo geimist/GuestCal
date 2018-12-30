@@ -1,0 +1,110 @@
+<h2>Inhalt</h2> 
+<ul>
+	<li>
+		<a href="#Anzeige">Anzeige</a> 
+		<ul>
+<!--			<li><a href="#Kalender">Kalenderansicht</a></li> -->
+			<li>
+				<a href="#Integration">Integration von GuestCal in eine Website</a>
+			</li>
+			<li>
+				<a href="#Templates">Templates</a>
+			</li>
+		</ul>
+	</li>
+<!--	<li>
+		<a href="#Admin">Admin-Bereich</a>
+		<ul>
+			<li><a href="#Belegungen">Belegungen</a></li>
+			<li><a href="#Belegungsarten">Belegungsarten</a></li>
+			<li><a href="#Objekte">Objekte</a></li>
+			<li><a href="#Einstellungen">Einstellungen</a></li>
+		</ul>
+	</li> -->
+	<li>
+		<a href="#Problembehebung">Problembehebung</a>
+		<ul>
+			<li><a href="#bom">Die Kalenderfarben werden nicht richtig dargestellt</a></li>
+			<li><a href="#php5endung">Mein Provider Unterstützt PHP5 nur, wenn die Dateien auf .php5 enden</a></li>
+		</ul>
+	</li>
+</ul>
+
+<h2><a name="Anzeige">Anzeige</a></h2> 
+<!-- <h3><a name="Kalender">Kalenderansicht</a></h3> -->
+
+<h3><a name="Integration">Integration von GuestCal in eine Website</a></h3> 
+<p>
+	Es gibt grundsätzlich zwei Arten, GuestCal in eine Website zu integrieren:
+	<br />
+	Entweder passen Sie das Aussehen der GuestCal-Ausgabe über ein <a href="#Templates">Template</a> an das Layout der Website an, oder Sie binden GuestCal per <code>&lt;iframe&gt;</code> ein:
+</p>
+<p>
+	<code>&lt;iframe src="http://www.guestcal.de/demo/index.php" name="GuestCal" width="700" height="450" frameborder="0" scrolling="no"&gt;&lt;/iframe&gt;</code>
+</p>
+<p>
+	In beiden Fällen möchten Sie vielleicht die angezeigte Sprache, das Objekt oder das Jahr an GuestCal übergeben, weil Sie z.B. die Sprachauswahl schon auf Ihrer Website realisiert haben. Dazu können Sie folgende GET-Parameter verwenden:
+</p>
+<table cellspacing="0" cellpadding="3" border="0" style="border: 1px solid #9c9c9c;">
+	<tr><th>Variable</th><th>Beschreibung</th></tr>
+	<tr style="background-color: #f0f0f0;"><td>lang</td><td>Sprachkürzel; de für Deutsch, en für Englisch</td></tr>
+	<tr><td>object</td><td>ID des anzuzeigenden Objekts. Diese können Sie im Admin-Bereich unter "Objekte" ablesen. Wenn Sie 0 übergeben, werden alle Objekte als Liste angezeigt.</td></tr>
+	<tr style="background-color: #f0f0f0;"><td>year</td><td>Anzuzeigendes Jahr</td></tr>
+</table>
+<p>
+	Folgendes Beispiel ruft das Objekt 1 für das Jahr 2010 in Englisch auf:
+</p>
+<p>
+	<code>http://www.guestcal.de/demo/?lang=en&amp;object=1&amp;year=2010</code>
+</p>
+
+<h3><a name="Templates">Templates</a></h3>
+<p>
+	Im Hauptverzeichnis von GuestCal sowie im Verzeichnis <code>admin/</code> finden Sie den Ordner <code>templates/</code>. Dort können beliebig viele Ordner mit Templates erstellt werden, wobei z.Zt. das Template im Verzeichnis <code>default/</code> automatisch verwendet wird.
+</p>
+<p>
+	Jedes Template besteht aus den HTML-Dateien <code>head.php</code>, <code>foot.php</code> sowie der CSS-Datei <code>main.css</code>. Diese können Sie beliebig anpassen, um das Aussehen von GuestCal zu verändern.
+</p>
+
+<!-- <h2><a name="Admin">Admin-Bereich</a></h2>
+
+<h3><a name="Belegungen">Belegungen</a></h3>
+
+<h3><a name="Belegungsarten">Belegungsarten</a></h3>
+
+<h3><a name="Objekte">Objekte</a></h3>
+
+<h3><a name="Einstellungen">Einstellungen</a></h3> -->
+
+<h2><a name="Problembehebung">Problembehebung</a></h2>
+
+<h3><a name="bom">Die Kalenderfarben werden nicht richtig dargestellt</a></h3>
+<p>
+	<u>Ursache:</u>
+	<br />
+	Wenn die Kalenderfarben nicht richtig dargestellt werden, wird die automatisch generierte <a href="http://de.wikipedia.org/wiki/Cascading_Style_Sheets" target="_blank">CSS-Datei</a> vermutlich nicht mit dem <a href="http://de.wikipedia.org/wiki/Internet_Media_Type" target="_blank">MIME-Typ</a> <i>text/css</i> gesendet. Dies passiert, wenn vor dem <a href="http://de2.php.net/manual/de/function.header.php" target="_blank">HTTP-Header</a> schon Daten ausgegeben wurden. Unbeabsichtigt werden ein paar Zeichen gesendet, wenn eine Datei in <a href="http://de.wikipedia.org/wiki/UTF-8" target="_blank">UTF-8</a> mit <a href="http://de.wikipedia.org/wiki/Byte_Order_Mark" target="_blank">BOM</a> gespeichert sind.
+</p>
+<p>
+	<u>Lösung:</u>
+	<br />
+	Achten Sie beim Speichern der Datei <i>config.inc.php</i> darauf, daß Sie diese als UTF-8 ohne BOM speichern. Falls Ihr Editor den Zeichensatz nicht unterstützt, können Sie hilfsweise auch <a href="http://de.wikipedia.org/wiki/ISO_8859-1">ISO&nbsp;8859-1</a> (=&nbsp;Latin-1) verwenden.
+</p>
+
+<h3><a name="php5endung"> Mein Provider Unterstützt PHP5 nur, wenn die Dateien auf .php5 enden</a></h3>
+<p>
+	Benennen Sie in diesem Fall die Dateien <code>index.php</code>, <code>css.php</code>, <code>admin/index.php</code> sowie <code>admin/setup/index.php</code> in <code>*.php5</code> um. Ändern Sie anschließend die Zeilen
+</p>
+<p>
+	<code>&lt;link rel="stylesheet" href="css.php" charset="utf-8"&gt;</code> bzw.
+	<br />
+	<code>&lt;link rel="stylesheet" href="' . BASEDIR . 'css.php" charset="utf-8"&gt;</code>
+</p>
+<p>
+	in <code>templates/default/head.php</code> bzw. <code>admin/templates/default/head.php</code> wiefolgt um:
+</p>
+<p>
+	
+	<code>&lt;link rel="stylesheet" href="css.php5" charset="utf-8"&gt;</code> bzw.
+	<br />
+	<code>&lt;link rel="stylesheet" href="' . BASEDIR . 'css.php5" charset="utf-8"&gt;</code>
+</p>
