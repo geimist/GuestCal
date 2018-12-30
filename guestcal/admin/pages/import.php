@@ -14,7 +14,7 @@ if (isset ($_GET['import']) && $_GET['import'] == 'guestcal1' && count ($_POST))
 	$notices = array ();
 	if ($db -> idExists ('objects', $_POST['object'])) {
 		$object = $_POST['object'];
-		$prefix = mysql_real_escape_string ($_POST['prefix']);
+		$prefix = mysqli_real_escape_string ($_POST['prefix']);
 		$nrImported = $db -> importFromV1 ($prefix, $object);
 		if ($nrImported)
 			$notices[] = __('adminImportv1NoticeSuccess', array ($nrImported));
