@@ -89,6 +89,9 @@ else {
 	$r .= '</form>';
 }
 
+
+
+
 // List objects
 $r .= '<h3>' . __('adminObjects') . ':</h3>';
 $r .= '<table>';
