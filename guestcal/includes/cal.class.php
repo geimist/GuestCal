@@ -19,11 +19,12 @@ class Calendar {
 	private $prefs = false;
 	private $db = false;
 
-	function calendar (&$db, &$prefs) {
-		$this -> db =& $db;
-		$this -> prefs =& $prefs;
-		$this -> hideExpiredDates = $this -> prefs['hideExpiredDates'];
-	}
+    function __construct(&$db, &$prefs) {
+    	$this -> db =& $db;
+    	$this -> prefs =& $prefs;
+    	$this -> hideExpiredDates = $this -> prefs['hideExpiredDates'];
+    }
+
 
 	/**
 	 * Sets year to be displayed.
