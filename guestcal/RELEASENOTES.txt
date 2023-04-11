@@ -1,3 +1,15 @@
+### GuestCal 2.1.6 (11.04.2023) ###
+
+- Support for php8.0
+  (https://www.tutorials.de/threads/php-script-aendern-damit-mysqli-php-7-2-funktioniert.407245)
+
+
+### GuestCal 2.1.5 (30.12.2018) ###
+
+- Support for php7.0
+  (https://www.tutorials.de/threads/php-script-aendern-damit-mysqli-php-7-2-funktioniert.407245)
+
+
 ### GuestCal 2.1.4 (22.01.2012) ###
 
 - Removed copyright information in footer
