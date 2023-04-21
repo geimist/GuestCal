@@ -37,7 +37,7 @@ echo $r;
 
 // Check for updates
 if (!$db -> error)
-	echo '<iframe width="600" height="50" scrolling="no" frameborder="0" src="http://www.guestcal.com/versioncheck.php?lang=' . LANG_ABBR . '&amp;version=' . VERSION . '"></iframe>';
+	//echo '<iframe width="600" height="50" scrolling="no" frameborder="0" src="http://www.guestcal.com/versioncheck.php?lang=' . LANG_ABBR . '&amp;version=' . VERSION . '"></iframe>';
 
 // HTML-Foot
 if (file_exists ($templateAdminPath . 'foot.php')) {

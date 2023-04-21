@@ -54,9 +54,10 @@ $pageTitle .= ' - ' . __('adminPrefs');
 
 // Save changes
 if (count ($_POST)) {
+	$post = $db -> mysql_real_escape_mixed ($_POST);
 	foreach ($prefs as $name => $value) {
 		if (isset ($_POST[$name]) && $_POST[$name] != $value) {
-			$db -> query ("UPDATE `prefs` SET `value`='" . mysql_real_escape_string ($_POST[$name]) . "' WHERE `name`='" . $name . "'");
+			$db -> query ("UPDATE `prefs` SET `value`='" . $post[$name] . "' WHERE `name`='" . $name . "'");
 		}
 	}
 	$prefs = readPrefs ($db);

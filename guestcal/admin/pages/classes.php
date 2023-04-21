@@ -10,15 +10,16 @@ $pageTitle .= ' - ' . __('adminClasses');
 
 // Save or delete
 if (isset ($_POST['class'])) {
-	if ($db -> idExists ('classes', $_POST['class'])) {
-		$id = $_POST['class'];
-		$db -> query ("UPDATE `classes` SET `color`='" . mysql_real_escape_string ($_POST['color']) . "' WHERE `id`=" . $id);
+	$post = $db -> mysql_real_escape_mixed ($_POST);
+	if ($db -> idExists ('classes', $post['class'])) {
+		$id = $post['class'];
+		$db -> query ("UPDATE `classes` SET `color`='" . $post['color'] . "' WHERE `id`=" . $id);
 		$db -> query ("DELETE FROM `classes_per_language` WHERE `class_id`=" . $id);
 	}
 	else
-		$id = $db -> query ("INSERT INTO `classes` SET `color`='" . mysql_real_escape_string ($_POST['color']) . "'", 'insert_id');
+		$id = $db -> query ("INSERT INTO `classes` SET `color`='" . $post['color'] . "'", 'insert_id');
 	foreach ($GLOBALS['langsActive'] as $lang)
-		$db -> query ("INSERT INTO `classes_per_language` SET `name`='" . mysql_real_escape_string ($_POST['name_' . $lang['abbr']]) . "', `content`='" . mysql_real_escape_string ($_POST['content_' . $lang['abbr']]) . "', `language_id`=" . $lang['id'] . ", `class_id`=" . $id);
+		$db -> query ("INSERT INTO `classes_per_language` SET `name`='" . $post['name_' . $lang['abbr']] . "', `content`='" . $post['content_' . $lang['abbr']] . "', `language_id`=" . $lang['id'] . ", `class_id`=" . $id);
 }
 elseif (isset ($_GET['action']) && $_GET['action'] == 'del2' && $db -> idExists ('classes', $_GET['class'])) {
 	$id = $_GET['class'];
@@ -72,6 +73,7 @@ else {
 	$r .= '<table>';
 	foreach ($GLOBALS['langsActive'] as $lang) {
 		$r .= '<tr><th>' . __('adminName') . ' (' . $lang['name'] . '):</th><td><input type="text" name="name_' . $lang['abbr'] . '" size="30" maxlength="30"';
+
 		if (isset ($classes[$id][$lang['id']]['name']))
 			$r .= ' value="' . $classes[$id][$lang['id']]['name'] . '"';
 		$r .= ' /></td></tr>';

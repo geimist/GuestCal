@@ -44,6 +44,7 @@ if (isset ($_GET['action']) && $_GET['action'] == 'del') {
 // Save entry
 elseif (count ($_POST)) {
 	// check values
+        $post = $db -> mysql_real_escape_mixed ($_POST);
 	if ($db -> idExists ('objects', $_POST['object']))
 		$object = $_POST['object'];
 	else
@@ -68,7 +69,7 @@ elseif (count ($_POST)) {
 	}
 	// insert language specific
 	foreach ($GLOBALS['langsActive'] as $lang)
-		$db -> query ("INSERT INTO `entries_per_language` SET `entry_id`=" . $id . ", `language_id`=" . $lang['id'] . ", `desc`='" . mysql_real_escape_string ($_POST['desc_' . $lang['abbr']]) . "'");
+		$db -> query ("INSERT INTO `entries_per_language` SET `entry_id`=" . $id . ", `language_id`=" . $lang['id'] . ", `desc`='" . $post['desc_' . $lang['abbr']] . "'");
 	// insert static
 	if ($kind == 'static') {
 		if (@checkdate ($_POST['static_fromM'], $_POST['static_fromD'], $_POST['static_fromY'])
